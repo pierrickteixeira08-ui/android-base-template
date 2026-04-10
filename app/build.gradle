@@ -1,0 +1,6 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.forgeai.template'
+    compileSdk 33
+    defaultConfig { applicationId 'com.forgeai.template'; minSdk 24; targetSdk 33; versionCode 1; versionName '1.0' }
+}
