@@ -20,14 +20,14 @@ while [ -h "$PRG" ]; do
 done
 
 SAVED="`pwd`"
-cd "`dirname "$PRG"`/" >/dev/null
+cd "`dirname \"$PRG\"`/" >/dev/null
 APP_HOME="`pwd -P`"
 cd "$SAVED" >/dev/null
 
 APP_NAME="Gradle"
 APP_BASE_NAME=`basename "$0"`
 
-# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+# Add default JVM options here.
 DEFAULT_JVM_OPTS=""
 
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
