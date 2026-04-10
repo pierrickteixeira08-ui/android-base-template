@@ -1,0 +1,2 @@
+rootProject.name = 'ForgeAIApp'
+include ':app'
