@@ -21,11 +21,14 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Build Debug APK
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Build with Gradle
         run: |
           if [ -f gradlew ]; then
             chmod +x gradlew
-            ./gradlew assembleDebug
+            ./gradlew assembleDebug || gradle assembleDebug
           else
-            echo "Gradlew non trouvé, ignore la compilation réelle pour le test"
+            gradle assembleDebug
           fi
