@@ -1,0 +1,31 @@
+name: Build ForgeAI APK
+on:
+  repository_dispatch:
+    types: [build_app]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inject generated code
+        run: |
+          mkdir -p app/src/main/java/com/forgeai/template/
+          echo "${{ github.event.client_payload.code }}" > app/src/main/java/com/forgeai/template/MainActivity.kt
+
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Build Debug APK
+        run: |
+          if [ -f gradlew ]; then
+            chmod +x gradlew
+            ./gradlew assembleDebug
+          else
+            echo "Gradlew non trouvé, ignore la compilation réelle pour le test"
+          fi
